@@ -307,6 +307,7 @@ export class DIContainer implements IDIContainer {
         const newable = registrationRecord.implementation as NewableService<T>;
         instance = new newable(...instanceArgs);
       } catch (ex) {
+        console.log('Error happens, while trying to construct an instance of the service with the identifier: ', identifier, ' and the implementation: ', registrationRecord.implementation, ' and the arguments: ', instanceArgs, ' and the error: ', ex);
         if (registrationRecord.implementation == null) {
           throw new ReferenceError(
             `${this.constructor.name} could not construct a new service of kind: ${identifier}. Reason: No implementation was given!`
